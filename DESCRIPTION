@@ -1,0 +1,17 @@
+Package: rbinance
+Title: A R Client to receive orderbook data from Binance Crypto-Currency Exchange 
+Version: 0.0.0.9000
+Authors@R: person("Pavel", "Paltsev", email = "pavel.paltsev@example.com", role = c("aut", "cre"))
+URL: https://github.com/paltsev-p/rbinance
+BugReports: https://github.com/paltsev-p/rbinance/issues
+Description: Attempt at writing a client for the Bittrex crypto-currency exchange https://binance.com to receive orderbook information. Some other functions might be added in the future.
+Depends: R (>= 3.4.2)
+License: LGPL-2
+Encoding: UTF-8
+LazyData: true
+Suggests: testthat
+RoxygenNote: 6.0.1
+Imports: assertthat,
+    dplyr,
+    websocket,
+    RCurl
