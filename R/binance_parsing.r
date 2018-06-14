@@ -6,9 +6,9 @@ binance_wss_parsing <- function(wssmsg)
 
   {
   # basic parsing of binance JSON messages (so far the same for Diff. Depth Stream (wss) messages and depth snapshots)
-  wssmsg <- wssmsg %>% gsub("\"", "", .) %>% gsub(',\\[\\]' , "", .) %>% gsub('\\[' , "", .) %>%
-    gsub('\\]' , "", .) %>% gsub('\\{' , "", .)  %>% gsub('\\}' , "", .)  %>% gsub(',' , ":", .)  %>% strsplit(":") %>%
-    unlist()
+  wssmsg <- wssmsg %>% gsub('\\[\\]' , "", .) %>% gsub("\"", "", .) %>% gsub('\\[' , "", .) %>%
+    gsub('\\]' , "", .) %>% gsub('\\{' , "", .)  %>% gsub('\\}' , "", .) %>% gsub(',' , ":", .) %>%
+    gsub('::' , ":", .)  %>% strsplit(":") %>% unlist()
 
 
 # further parsing of messages from wss stream into list object
@@ -60,9 +60,9 @@ binance_snapshot_parsing <- function(snapshot)
   {
 
   # basic parsing of binance JSON messages (so far the same for Diff. Depth Stream (wss) messages and depth snapshots)
-  snapshot <- snapshot %>% gsub("\"", "", .) %>% gsub(',\\[\\]' , "", .) %>% gsub('\\[' , "", .) %>%
-    gsub('\\]' , "", .) %>% gsub('\\{' , "", .)  %>% gsub('\\}' , "", .)  %>% gsub(',' , ":", .)  %>% strsplit(":") %>%
-    unlist()
+  snapshot <- snapshot %>% gsub('\\[\\]' , "", .) %>% gsub("\"", "", .) %>% gsub('\\[' , "", .) %>%
+    gsub('\\]' , "", .) %>% gsub('\\{' , "", .)  %>% gsub('\\}' , "", .) %>% gsub(',' , ":", .) %>%
+    gsub('::' , ":", .)  %>% strsplit(":") %>% unlist()
 
   # checking the format
   # expected message format at this stage:
