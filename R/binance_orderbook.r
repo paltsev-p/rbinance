@@ -63,4 +63,4 @@ binance_update_orderbook <- function(small, big)
     return(big)
   }
 
-  }
+

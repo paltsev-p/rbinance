@@ -26,15 +26,15 @@ binance_wss_parsing <- function(wssmsg)
 
 
   if (which(wssmsg == "a") - which(wssmsg == "b") > 1 )
-    { smallbids <- tibble( rate = as.numeric(wssmsg[ seq.int((which(wssmsg == "b")+1), (which( wssmsg == "a")-2), by = 2)]),
+    { smallbids <- dplyr::tibble( rate = as.numeric(wssmsg[ seq.int((which(wssmsg == "b")+1), (which( wssmsg == "a")-2), by = 2)]),
                                amount = as.numeric(wssmsg[ seq.int((which(wssmsg == "b")+2), (which( wssmsg == "a")-1), by = 2)] ) )
-    } else smallbids <- tibble()
+    } else smallbids <- dplyr::tibble()
 
 
   if (length(wssmsg) - which(wssmsg == "a") > 0 )
-    {smallasks <- tibble( rate = as.numeric(wssmsg[ seq.int((which(wssmsg == "a")+1), length(wssmsg) -1, by = 2)] ),
+    {smallasks <- dplyr::tibble( rate = as.numeric(wssmsg[ seq.int((which(wssmsg == "a")+1), length(wssmsg) -1, by = 2)] ),
                               amount = as.numeric(wssmsg[ seq.int((which(wssmsg == "a")+2), length(wssmsg), by = 2)] ) )
-    }   else smallasks <- tibble()
+    }   else smallasks <- dplyr::tibble()
 
   result <- list()
   result$type <- wssmsg[2]
@@ -76,10 +76,10 @@ binance_snapshot_parsing <- function(snapshot)
 
 
 
-  bids <- tibble( rate = as.numeric(snapshot[ seq.int((which(snapshot == "bids")+1), (which( snapshot == "asks")-2), by = 2)]),
+  bids <- dplyr::tibble( rate = as.numeric(snapshot[ seq.int((which(snapshot == "bids")+1), (which( snapshot == "asks")-2), by = 2)]),
                       amount = as.numeric(snapshot[ seq.int((which(snapshot == "bids")+2), (which( snapshot == "asks")-1), by = 2)]) )
 
-  asks <- tibble( rate = as.numeric(snapshot[ seq.int((which(snapshot == "asks")+1), length(snapshot) -1, by = 2)]),
+  asks <- dplyr::tibble( rate = as.numeric(snapshot[ seq.int((which(snapshot == "asks")+1), length(snapshot) -1, by = 2)]),
                       amount = as.numeric(snapshot[ seq.int((which(snapshot == "asks")+2), length(snapshot), by = 2)] ))
 
 
