@@ -82,8 +82,9 @@ binance_snapshot_parsing <- function(snapshot)
   asks <- dplyr::tibble( rate = as.numeric(snapshot[ seq.int((which(snapshot == "asks")+1), length(snapshot) -1, by = 2)]),
                       amount = as.numeric(snapshot[ seq.int((which(snapshot == "asks")+2), length(snapshot), by = 2)] ))
 
-
-  return(list(lastUpdateId = as.numeric(snapshot[2]), asks = asks, bids = bids))
+  # setting additional "status" flag that should change when first diff update is applied
+  # as well as "" that would track the processed diffs
+  return(list(lastUpdateId = as.numeric(snapshot[2]), status = "initial", asks = asks, bids = bids))
 
   }
 
